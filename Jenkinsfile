@@ -5,21 +5,6 @@ gitBranch = 'master'
 
 node('master') {
     workspace = pwd()
-    stage('Git-Clone') {
-        checkout([
-            $class: 'GitSCM',
-            doGenerateSubmoduleConfigurations: false,
-            branches: [
-                [name: gitBranch]
-            ],
-            extensions: [
-                [$class: 'CleanBeforeCheckout']
-            ],
-            userRemoteConfigs: [
-                [credentialsId: 'sarveshsingh.03', url: gitRepo]
-            ]
-        ])
-    }
     gitHash = sh(returnStdout: true, script: 'git rev-parse --short --verify HEAD').trim()
     // Run in Container using base network on Host
     sh "docker pull ${dockerImage}"
