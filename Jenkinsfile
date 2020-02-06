@@ -16,5 +16,5 @@ node('master') {
             }
         }
     }
-    sh "docker rmi Image ${dockerImage}"
+    sh "docker rmi ${dockerImage}"
 }
