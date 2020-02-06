@@ -16,5 +16,5 @@ node('master') {
             }
         }
     }
-    docker rmi Image python
+    docker images purge
 }
