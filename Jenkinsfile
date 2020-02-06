@@ -15,6 +15,6 @@ node('master') {
                 sh "python3 -u learning.py"
             }
         }
-    }
     docker images purge
+    }
 }
