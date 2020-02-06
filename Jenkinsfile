@@ -14,7 +14,6 @@ node('master') {
             stage('Get User') {
                 sh "python3 -u learning.py"
             }
-
         }
     }
     docker rmi Image python
