@@ -1,7 +1,5 @@
 // Global Variables
-gitRepo = 'https://github.com/sarvesh371/ci-learning.git'
 dockerImage = "python"
-gitBranch = 'master'
 
 node('master') {
     workspace = pwd()
