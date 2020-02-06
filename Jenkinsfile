@@ -17,5 +17,5 @@ node('master') {
 
         }
     }
-    docker rmi python
+    docker rmi Image python
 }
