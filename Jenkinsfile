@@ -11,14 +11,23 @@ properties([
 inputString = (params.inputString == null) ? 'Type What you want to print' : params.inputString.toString().trim().replaceAll('"', '')
 
 node('master') {
+    stage('Git-Clone') {
+        checkout([
+            $class: 'GitSCM',
+            doGenerateSubmoduleConfigurations: false,
+            branches: [[name: 'master']],
+            extensions: [[$class: 'CleanBeforeCheckout']],
+            userRemoteConfigs: [[credentialsId: 'bitbucket-root', url: gitRepo]]]
+        )
+    }
     workspace = pwd()
-    gitHash = sh(returnStdout: true, script: 'git rev-parse --short --verify HEAD').trim()
-    // Run in Container using base network on Host
-    sh "docker pull ${dockerImage}"
     withDockerContainer(args: '-v $workspace/:/root/:z --network=host', image: dockerImage) {
+        gitHash = sh(returnStdout: true, script: 'git rev-parse --short --verify HEAD').trim()
+        // Run in Container using base network on Host
+        sh "docker pull ${dockerImage}"
         docWorkSpace = pwd()
         withEnv(["PYTHONPATH=${docWorkSpace}", "HASH=${gitHash}"]) {
-            stage('Get User') {
+            stage('Run Python Code') {
                 sh "python3 -u learning.py --inputString=${inputString}"
             }
         }
