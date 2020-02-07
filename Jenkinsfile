@@ -2,7 +2,6 @@
 dockerImage = "python"
 
 properties([
-    pipelineTriggers([cron('H/05 * * *')]),
     buildDiscarder(logRotator(artifactDaysToKeepStr: '7', artifactNumToKeepStr: '500', daysToKeepStr: '7', numToKeepStr: '500')),
     parameters([
         string(defaultValue: 'Type What you want to print', description: "Input String", name: 'inputString'),
