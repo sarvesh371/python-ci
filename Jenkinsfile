@@ -1,5 +1,5 @@
 // Global Variables
-dockerImage = "python"
+dockerImage = "sarvesh371/mypython:test1"
 gitRepo = "https://github.com/sarvesh371/ci-learning.git"
 
 properties([
