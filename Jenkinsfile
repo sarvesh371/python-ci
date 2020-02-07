@@ -8,6 +8,8 @@ properties([
     ])
 ])
 
+inputString = (params.inputString == null) ? 'Type What you want to print' : params.inputString.toString().trim().replaceAll('"', '')
+
 node('master') {
     workspace = pwd()
     gitHash = sh(returnStdout: true, script: 'git rev-parse --short --verify HEAD').trim()
