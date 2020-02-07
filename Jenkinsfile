@@ -1,5 +1,6 @@
 // Global Variables
 dockerImage = "python"
+gitRepo = "https://github.com/sarvesh371/ci-learning.git"
 
 properties([
     buildDiscarder(logRotator(artifactDaysToKeepStr: '7', artifactNumToKeepStr: '500', daysToKeepStr: '7', numToKeepStr: '500')),
@@ -17,7 +18,7 @@ node('master') {
             doGenerateSubmoduleConfigurations: false,
             branches: [[name: 'master']],
             extensions: [[$class: 'CleanBeforeCheckout']],
-            userRemoteConfigs: [[credentialsId: 'bitbucket-root', url: gitRepo]]]
+            userRemoteConfigs: [[credentialsId: 'sarveshsingh.03', url: gitRepo]]]
         )
     }
     workspace = pwd()
