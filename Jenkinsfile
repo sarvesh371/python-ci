@@ -1,6 +1,14 @@
 // Global Variables
 dockerImage = "python"
 
+properties([
+    pipelineTriggers([cron('H/05 * * *')]),
+    buildDiscarder(logRotator(artifactDaysToKeepStr: '7', artifactNumToKeepStr: '500', daysToKeepStr: '7', numToKeepStr: '500')),
+    parameters([
+        string(defaultValue: 'Type What you want to print', description: "Input String", name: 'inputString'),
+    ])
+])
+
 node('master') {
     workspace = pwd()
     gitHash = sh(returnStdout: true, script: 'git rev-parse --short --verify HEAD').trim()
@@ -10,7 +18,7 @@ node('master') {
         docWorkSpace = pwd()
         withEnv(["PYTHONPATH=${docWorkSpace}", "HASH=${gitHash}"]) {
             stage('Get User') {
-                sh "python3 -u learning.py"
+                sh "python3 -u learning.py --inputString=${inputString}"
             }
         }
     }
