@@ -22,10 +22,11 @@ node('master') {
         )
     }
     workspace = pwd()
+    currentBuild.result = "SUCCESS"
+    sh "docker pull ${dockerImage}"
     withDockerContainer(args: '-v $workspace/:/root/:z --network=host', image: dockerImage) {
         gitHash = sh(returnStdout: true, script: 'git rev-parse --short --verify HEAD').trim()
         // Run in Container using base network on Host
-        sh "docker pull ${dockerImage}"
         docWorkSpace = pwd()
         withEnv(["PYTHONPATH=${docWorkSpace}", "HASH=${gitHash}"]) {
             stage('Run Python Code') {
