@@ -27,8 +27,7 @@ node('master') {
     withDockerContainer(args: '-v $workspace/:/root/:z --network=host', image: dockerImage) {
         gitHash = sh(returnStdout: true, script: 'git rev-parse --short --verify HEAD').trim()
         // Run in Container using base network on Host
-        docWorkSpace = pwd()
-        withEnv(["PYTHONPATH=${docWorkSpace}", "HASH=${gitHash}"]) {
+        withEnv(["PYTHONPATH=${workspace}", "HASH=${gitHash}"]) {
             stage('Run Python Code') {
                 sh "python3 -u learning.py --inputString=${inputString}"
             }
