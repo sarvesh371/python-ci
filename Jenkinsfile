@@ -1,6 +1,6 @@
 // Global Variables
 dockerImage = "sarvesh371/mypython:test1"
-gitRepo = "https://github.com/sarvesh371/ci-learning.git"
+gitRepo = "https://github.com/sarvesh371/ci-python.git"
 
 properties([
     buildDiscarder(logRotator(artifactDaysToKeepStr: '7', artifactNumToKeepStr: '500', daysToKeepStr: '7', numToKeepStr: '500')),
