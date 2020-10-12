@@ -1,1 +1,4 @@
-docker run busybox
+docker start $containerId
+docker exec -it $containerId bash
+exit
+docker stop $containerId
