@@ -1,0 +1,6 @@
+docker start $containerId
+docker exec -it $containerId bash
+mongo
+show dbs
+exit
+docker stop $containerId
