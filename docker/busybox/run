@@ -1,1 +1,5 @@
 docker run busybox
+docker run --name test busybox
+docker run --name test --detach busybox
+docker run --name test --rm busybox
+docker run --name test -it --detach --rm busybox bash

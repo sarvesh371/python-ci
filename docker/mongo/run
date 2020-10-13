@@ -1,1 +1,5 @@
 docker run mongo
+docker run --name test mongo
+docker run --name test --detach mongo
+docker run --name test --rm mongo
+docker run --name test -it --detach --rm mongo bash
