@@ -3,6 +3,8 @@ FROM alpine
 
 # Maintain Label
 LABEL maintainer="Sarvesh Singh <sarveshsingh.03@gmail.com>"
+ENV IMAGE_NAME='alpine' \
+    CUSTOM_IMAGE_NAME="mongodb"
 
 # Install software
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/main' >> /etc/apk/repositories && \
