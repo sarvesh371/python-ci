@@ -1,0 +1,1 @@
+docker run --rm --publish 3000:3000 sarvesh030195/node-alpine:v1

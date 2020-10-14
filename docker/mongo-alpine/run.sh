@@ -1,0 +1,1 @@
+docker run --rm sarvesh030195/mongo-alpine:v1
