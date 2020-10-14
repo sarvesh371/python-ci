@@ -16,4 +16,6 @@ WORKDIR /usr/nodeapp/test2/
 
 # Run Code
 RUN npm install
+
+# Set Default commands
 CMD [ "npm", "start" ]
