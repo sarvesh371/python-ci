@@ -1,0 +1,1 @@
+docker run --rm sarvesh030195/python-automation:v1
