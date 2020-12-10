@@ -20,4 +20,5 @@ RUN export PYTHONHTTPSVERIFY=0 && \
     /bin/bash -c "source $PYTHON_VENV/bin/activate" && \
     python3 -m pip install -U pip && \
     python3 -m pip install -U virtualenv && \
-    python3 -m pip install --progress-bar pretty --requirement requirements.txt
+    python3 -m pip install --progress-bar pretty --requirement requirements.txt && \
+    deactivate

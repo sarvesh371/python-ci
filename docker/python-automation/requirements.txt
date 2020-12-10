@@ -137,7 +137,7 @@ openapi3==1.0.1
 openpyxl==3.0.5
 ordered-set==4.0.2
 packaging==20.4
-pandas==1.1.1
+pandas==1.1.5
 pandocfilters==1.4.2
 paramiko==2.7.2
 parso==0.7.1
