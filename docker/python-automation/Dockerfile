@@ -4,34 +4,34 @@ FROM ubuntu:latest
 # Maintain Label
 LABEL maintainer="Sarvesh Singh <sarveshsingh.03@gmail.com>"
 ARG IMAGE_NAME='sarvesh030195/python-automation:v1'
+ENV DEBIAN_FRONTEND=noninteractive \
+    JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64" \
+    PATH=$PATH:/usr/local/bin
 
 # Set working directory
 WORKDIR /root
 
-# Install Basic Packages
-RUN apt-get --assume-yes --allow-unauthenticated clean && \
-    apt-get --assume-yes --allow-unauthenticated update && \
-    apt-get --assume-yes --allow-unauthenticated install apt-transport-https apt-utils bc build-essential && \
-    apt-get --assume-yes --allow-unauthenticated update
-
-
-# Essential Packages
-RUN apt-get --assume-yes --allow-unauthenticated install libssl-dev libpq-dev musl-dev python3.9-dev python3.9-dev \
-    python3-pip python3.9-dev python3.9-venv
-RUN apt-get --assume-yes --allow-unauthenticated install git python3.9 && \
-    ln -fs /usr/bin/python3.9 /usr/bin/python3
+# Essential Packages/Setup
+RUN apt-get --assume-yes update && \
+    apt --assume-yes install default-jre default-jdk && \
+    apt-get --assume-yes install python3.9 python3-pip build-essential libssl-dev python3.9-dev git-all && \
+    apt install curl && \
+    curl -o allure-2.7.0.tgz -Ls https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.7.0/allure-2.7.0.tgz && \
+    tar -zxvf allure-2.7.0.tgz -C /opt/ && \
+    ln -s /opt/allure-2.7.0/bin/allure /usr/bin/allure && \
+    rm -rf allure-*
 
 # Copy Code
 COPY ./requirements.txt ./
 
 # Run Code
-RUN python3 -m pip install --no-cache-dir --quiet --upgrade setuptools pyopenssl shyaml pip bc yq wheel virtualenv && \
-    export PYTHONHTTPSVERIFY=0 && \
-    export PYTHON_VENV=venv && \
+RUN export PYTHON_VENV=venv && \
     rm -rf $PYTHON_VENV && \
-    python3 -m virtualenv $PYTHON_VENV && \
+    python3.9 -m pip install -U pip && \
+    python3.9 -m pip install -U virtualenv && \
+    python3.9 -m virtualenv $PYTHON_VENV && \
     . /root/$PYTHON_VENV/bin/activate && \
-    python3 -m pip install --progress-bar pretty --requirement requirements.txt && \
+    python3.9 -m pip install --progress-bar pretty --requirement requirements.txt && \
     deactivate
 
 # Remove files
