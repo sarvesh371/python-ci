@@ -62,7 +62,7 @@ twine==3.2.0
 tzlocal==2.1
 uncurl==0.0.10
 uritemplate==3.0.1
-urllib3==1.25.10
+urllib3==1.26.5
 uuid==1.30
 virtualenv==20.0.31
 virtualenv-clone==0.5.4
