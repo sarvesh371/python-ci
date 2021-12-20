@@ -16,9 +16,9 @@ WORKDIR /root
 RUN apt-get --assume-yes update && \
     apt --assume-yes install default-jre default-jdk && \
     apt-get --assume-yes install build-essential libssl-dev python3-dev && \
-    curl -o allure-2.7.0.tgz -Ls https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.7.0/allure-2.7.0.tgz && \
-    tar -zxvf allure-2.7.0.tgz -C /opt/ && \
-    ln -s /opt/allure-2.7.0/bin/allure /usr/bin/allure && \
+    curl -o allure-2.16.1.tgz -Ls https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.16.1/allure-commandline-2.16.1.tgz && \
+    tar -zxvf allure-2.16.1.tgz -C /opt/ && \
+    ln -s /opt/allure-2.16.1/bin/allure /usr/bin/allure && \
     rm -rf allure-*
 
 # Copy Code
