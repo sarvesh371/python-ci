@@ -69,7 +69,7 @@ pathlib2==2.3.5
 pathspec==0.8.0
 pip-review==1.1.0
 pip-upgrader==1.4.15
-pipenv==2020.8.13
+pipenv==2022.1.8
 pkginfo==1.5.0.1
 platformdirs==2.4.0
 pluggy==0.13.1
