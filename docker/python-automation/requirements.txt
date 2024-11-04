@@ -123,7 +123,7 @@ typing_extensions==4.0.0
 tzlocal==2.1
 uncurl==0.0.10
 uritemplate==3.0.1
-urllib3==1.25.11
+urllib3==1.26.19
 uuid==1.30
 virtualenv==20.0.31
 virtualenv-clone==0.5.4
